@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-do list</title>
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1> My To Do List</h1>
+
+    <form method="POST" action="/postItem">
+        <input class="text-input" type="text" name="todoItem" autocomplete="off" autofocus="on" required><br>
+        <input class="submit-button" type="submit" value="">
+    </form>
+</header>
+    <section>
+    <ul>
+        <% for (let i = 0; i < info.length; i++){ %>
+            <%if (info[i].deleted == false){ %> 
+                <%if (info[i].completed == false){%>
+                    <li class="item"> 
+                        <i class="fa-regular fa-square not-checked"></i>
+                        <span class="uncompleted"><%=info[i].todoItem%></span> 
+                        <i class="fa-solid fa-trash"></i>
+                    </li>
+                <% } else{%> <!--If end--> 
+                    <li class="item"> 
+                        <i class="fa-regular fa-square-check checked"></i>
+                        <span class="completed"><%=info[i].todoItem%></span>
+                        <i class="fa-solid fa-trash"></i>
+                    </li>
+                <%}%> <!--Else end-->
+
+            <% } %> <!--If end-->
+        <% } %> <!--For loop end-->
+    </ul>
+    </section>
+    <script src="/js/main.js"></script>
+</body>
+</html>

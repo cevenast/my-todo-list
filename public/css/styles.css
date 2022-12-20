@@ -1,0 +1,58 @@
+html{
+    background-color: #f3f5f0;
+}
+body{
+    margin:auto;
+    font-family: 'Cutive', serif;
+}
+
+header{
+    text-align: center;
+    padding-bottom:60px;
+}
+.fa-regular:hover{
+    padding:0;
+    color:rgb(194, 138, 138);
+    size:2px;
+    transition:0.2s;
+}
+
+ul{
+    padding:0;
+    list-style-type: none;
+    width:800px;
+    margin:0 auto;
+
+}
+
+li{
+    padding:4px;
+}
+
+.fa-trash{
+    float:right;
+}
+
+.completed{
+    text-decoration:line-through;
+    color:rgb(105, 105, 105);
+}
+
+.text-input{
+    border:none;
+    border-bottom:dotted gray 2px;
+    background-color: #f3f5f0;
+}
+
+.text-input:focus{
+    outline-width:0;
+    outline-style: none;
+}
+.submit-button{
+    display:none;
+    background-color:#f3f5f0;
+    width:30px;
+    height:30px;
+    border-radius:15px;
+    border:none;
+}
