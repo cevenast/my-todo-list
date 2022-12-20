@@ -11,7 +11,7 @@ document.querySelectorAll('.fa-trash').forEach(checkbox => {
 })
 
 async function markTask(){
-    const itemName = this.parentNode.childNodes[3].innerText
+    const itemName = this.parentNode.childNodes[3].value
     try{
         const response = await fetch('/markTask', {
             method: 'put',
@@ -30,7 +30,7 @@ async function markTask(){
 
 async function unmarkTask(){
     try{
-        const itemName = this.parentNode.childNodes[3].innerText
+        const itemName = this.parentNode.childNodes[3].value
         const response = await fetch('/unmarkTask', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -48,7 +48,7 @@ async function unmarkTask(){
 
 async function deleteTask(){
     try{
-        const itemName = this.parentNode.childNodes[3].innerHTML
+        const itemName = this.parentNode.childNodes[3].value
         const response = await fetch('/deleteTask', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},

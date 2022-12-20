@@ -36,14 +36,21 @@ li{
 .completed{
     text-decoration:line-through;
     color:rgb(105, 105, 105);
+    width:92%;
 }
 
+form{
+    display:inline;
+}
 .text-input{
     border:none;
     border-bottom:dotted gray 2px;
     background-color: #f3f5f0;
 }
 
+.uncompleted{
+    width:92%;
+}
 .text-input:focus{
     outline-width:0;
     outline-style: none;

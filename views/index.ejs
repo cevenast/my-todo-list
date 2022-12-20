@@ -35,13 +35,15 @@
                 <%if (info[i].completed == false){%>
                     <li class="item"> 
                         <i class="fa-regular fa-square not-checked"></i>
-                        <span class="uncompleted"><%=info[i].todoItem%></span> 
+                        <form action="/updateName" method="POST">
+                            <input class = "text-input uncompleted" type="text" value="<%=info[i].todoItem%>" name="probando">
+                        </form>
                         <i class="fa-solid fa-trash"></i>
                     </li>
                 <% } else{%> <!--If end--> 
                     <li class="item"> 
                         <i class="fa-regular fa-square-check checked"></i>
-                        <span class="completed"><%=info[i].todoItem%></span>
+                        <input class = "text-input completed" type="text" value="<%=info[i].todoItem%>">
                         <i class="fa-solid fa-trash"></i>
                     </li>
                 <%}%> <!--Else end-->
