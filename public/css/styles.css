@@ -20,9 +20,11 @@ header{
 ul{
     padding:0;
     list-style-type: none;
-    width:800px;
-    margin:0 auto;
+}
 
+section{
+    margin:0 auto;
+    width:800px;
 }
 
 li{
@@ -33,10 +35,15 @@ li{
     float:right;
 }
 
+.fa-solid:hover{
+    color:rgb(194, 138, 138);
+    transition:0.1s;
+}
+
 .completed{
     text-decoration:line-through;
     color:rgb(105, 105, 105);
-    width:92%;
+    width:88%;
 }
 
 form{
@@ -49,17 +56,50 @@ form{
 }
 
 .uncompleted{
-    width:92%;
+    width:88%;
 }
 .text-input:focus{
     outline-width:0;
     outline-style: none;
 }
 .submit-button{
-    display:none;
-    background-color:#f3f5f0;
+    background-color: #f3f5f0;
     width:30px;
     height:30px;
     border-radius:15px;
     border:none;
+    color:black;
+    font-size:30px;
+    padding-bottom:10px;
+
 }
+
+.submit-button:hover{
+    color:rgb(194, 138, 138);
+    transition:0.3s;
+}
+
+section > section{
+    padding-left: 6px;
+}
+/* 
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 23px;
+    max-height: 100px;
+    border:solid red 1px;
+    line-height: 20px;
+    padding-top:1px;
+}
+
+textarea:focus{
+    text-decoration:underline;
+    text-decoration-style: dotted;
+    text-decoration-color:gray;
+    text-decoration-thickness: 2px ;
+}
+
+i{
+    vertical-align:top;
+} */
