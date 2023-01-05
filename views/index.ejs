@@ -28,33 +28,24 @@
         <ul>
             <% for (let i = 0; i < info.length; i++){ %>
                 <%if (info[i].deleted == false){ %> 
-                    <%if (info[i].completed == false){%>
-                        <li class="item"> 
-                            <i class="fa-regular fa-square not-checked"></i>
-                            <i class="fa-solid fa-arrows-rotate"></i>
-                            <i class="fa-solid fa-greater-than"></i>
-                            <input class = "text-input uncompleted" type="text" value="<%=info[i].todoItem%>" data-id="<%=info[i]._id%>">
-                            <!-- <textarea class = "text-input uncompleted" type="text" data-id="<%=info[i]._id%>"oninput="auto_grow(this)"><%=info[i].todoItem%></textarea> -->
-                            
-                            <i class="fa-solid fa-trash"></i>
-                            
-                            
-                        </li>
-                    <% } else{ //If end%> 
-                        <li class="item"> 
-                            <i class="fa-regular fa-square-check checked"></i>
-                            <i class="fa-solid fa-arrows-rotate"></i>
-                            <i class="fa-solid fa-greater-than"></i>
-                            <input class="text-input completed" type="text" value="<%=info[i].todoItem%>" data-id="<%=info[i]._id%>">
-                            <!-- <textarea class="text-input completed" type="text" data-id="<%=info[i]._id%>"><%=info[i].todoItem%></textarea> -->
-                            
-                            <i class="fa-solid fa-trash"></i>
-                            
-                            
-                        </li>
-                    <%} // Else end%>
 
-                <% } // If end%>
+                        <li class="item"> 
+                            <i class="fa-regular <%=info[i].completed == false ? 'fa-square not-checked' : 'fa-square-check checked'%>"></i>
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <i class="fa-solid fa-circle-chevron-down"></i>
+                            <input class = "text-input <%=info[i].completed == false ? 'uncompleted':'completed'%>" type="text" value="<%=info[i].todoItem%>" data-id="<%=info[i]._id%>">
+                            <i class="fa-solid fa-trash"></i>
+                            <ul class="subtasks">
+                                <% info[i].subtasks.forEach(subtask => { %>
+                                    <li class="subtask">
+                                        <input class = "subtask text-input" value="<%=subtask%>">
+                                    </li>
+                                <%})%>
+                            </ul>
+                            
+                        </li>
+
+                <% } // If deleted end%>
             <% } // For loop end%>
         </ul>
         <section>
