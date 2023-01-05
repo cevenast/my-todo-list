@@ -12,7 +12,7 @@ module.exports = {
 
     createTask: async (req,res) => {
         try{
-            await Note.create({todoItem:req.body.todoItem, completed:false, deleted:false})
+            await Note.create({todoItem:req.body.todoItem, completed:false, deleted:false, hasSubtasks:false, subtasks:[]})
             console.log(`${req.body.todoItem} Item has been created`)
             res.redirect('/')
         }catch(err){
