@@ -14,6 +14,7 @@ router.put('/unmarkTask', checkController.unmarkItem)
 router.put('/renameTask', operationsController.rename)
 router.put('/deleteTask', operationsController.delete)
 router.post('/addSubtask', subtasks.addSubtask)
-
+router.put('/deleteSubtask', subtasks.deleteSubtask)
+router.put('/updateSubtask', subtasks.updateSubtask)
 
 module.exports = router

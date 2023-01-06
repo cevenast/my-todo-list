@@ -11,13 +11,8 @@
         checkbox.addEventListener('click', deleteTask)
     })
 
-    document.querySelectorAll('.fa-arrows-rotate').forEach(checkbox => {
+    document.querySelectorAll('.task-update').forEach(checkbox => {
         checkbox.addEventListener('click', renameTask)
-    })
-
-// Subtasks event listeners
-    document.querySelectorAll('.fa-circle-chevron-down').forEach(downarrow => {
-        downarrow.addEventListener('click', appearSubtask)
     })
 
 
@@ -103,15 +98,147 @@ async function renameTask(){
     }
 }
 
+//Subtasks Event Listeners
+document.querySelectorAll('.fa-circle-chevron-down').forEach(downarrow => {
+    downarrow.addEventListener('click', appearSubtask)
+})
+
+document.querySelectorAll('.fa-xmark').forEach(x => {
+    x.addEventListener('click', deleteSubtask)
+})
+
+document.querySelectorAll('.subtask-square').forEach(square => {
+    square.addEventListener('click', markSubtask)
+})
+
+document.querySelectorAll('.st-update').forEach(update => {
+    update.addEventListener('click', updateSubtask)
+})
+
 // Subtasks Handlers
 
 function appearSubtask(){
     const itemid = this.parentNode.childNodes[7].dataset.id
-    const ul = this.nextElementSibling.nextElementSibling
+    const ul = this.nextElementSibling.nextElementSibling.nextElementSibling
     const li = document.createElement('li')
-    li.innerHTML = `<form class="subtask-write" action="/addSubtask" method="POST"><input type="hidden" name="id" value="${itemid}" /><input class="submit-button" type="submit" value="+"><input class = "text-input uncompleted" type="text" name="subtask"></form>`
+    li.innerHTML = `<form class="subtask-write" action="/addSubtask" method="POST"><input type="hidden" name="id" value="${itemid}" /><input class="submit-button" type="submit" value="+"><input class = "text-input" type="text" name="subtask" autofocus="on" required></form>`
     ul.appendChild(li)
 }
+
+async function deleteSubtask(){
+    const ul = this.parentNode.parentNode
+    const itemid = ul.previousElementSibling.previousElementSibling.dataset.id
+    let uncompletedSubtasks = []
+    let completedSubtasks = []
+
+    const deletedSubtask = this.previousElementSibling.value
+    for (let i = 1; i < ul.childElementCount*2; i+=2){
+        console.log(ul.childNodes[i].childNodes[5].value)
+        if (ul.childNodes[i].childNodes[5].value != deletedSubtask){
+            if (ul.childNodes[i].childNodes[5].classList.contains('uncompleted')){
+                uncompletedSubtasks.push(ul.childNodes[i].childNodes[5].value)
+            }
+            else{
+                completedSubtasks.push(ul.childNodes[i].childNodes[5].value)
+            }
+        }
+    }
+
+    try{
+        const response = await fetch('/deleteSubtask', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: itemid,
+                deletedSubtask: deletedSubtask,
+                uncompletedSubtasks: uncompletedSubtasks,
+                completedSubtasks: completedSubtasks
+            })
+        })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function markSubtask(){
+    const ul = this.parentNode.parentNode
+    const input = this.nextElementSibling.nextElementSibling
+    const itemid = ul.previousElementSibling.previousElementSibling.dataset.id
+    if (input.classList.contains('uncompleted')){
+        input.classList.replace('uncompleted','completed')
+    }
+    else{
+        input.classList.replace('completed','uncompleted')
+    }
+
+    let uncompletedSubtasks = []
+    let completedSubtasks = []
+    
+    for (let i = 1; i < ul.childElementCount*2; i+=2){
+        if (ul.childNodes[i].childNodes[5].classList.contains('uncompleted')){
+            uncompletedSubtasks.push(ul.childNodes[i].childNodes[5].value)
+        }
+        else{
+            completedSubtasks.push(ul.childNodes[i].childNodes[5].value)
+        }
+    }
+
+    try{
+        const response = await fetch('/updateSubtask', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: itemid,
+                uncompletedSubtasks: uncompletedSubtasks,
+                completedSubtasks: completedSubtasks
+            })
+        })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function updateSubtask(){
+    const ul = this.parentNode.parentNode
+    const input = this.nextElementSibling.nextElementSibling
+    const itemid = ul.previousElementSibling.previousElementSibling.dataset.id
+
+    let uncompletedSubtasks = []
+    let completedSubtasks = []
+    
+    for (let i = 1; i < ul.childElementCount*2; i+=2){
+        if (ul.childNodes[i].childNodes[5].classList.contains('uncompleted')){
+            uncompletedSubtasks.push(ul.childNodes[i].childNodes[5].value)
+        }
+        else{
+            completedSubtasks.push(ul.childNodes[i].childNodes[5].value)
+        }
+    }
+
+    try{
+        const response = await fetch('/updateSubtask', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: itemid,
+                uncompletedSubtasks: uncompletedSubtasks,
+                completedSubtasks: completedSubtasks
+            })
+        })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+    }catch(err){
+        console.log(err)
+    }
+}
+
 
 
 

@@ -31,16 +31,28 @@
 
                         <li class="item"> 
                             <i class="fa-regular <%=info[i].completed == false ? 'fa-square not-checked' : 'fa-square-check checked'%>"></i>
-                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <i class="fa-solid fa-arrows-rotate task-update"></i>
                             <i class="fa-solid fa-circle-chevron-down"></i>
                             <input class = "text-input <%=info[i].completed == false ? 'uncompleted':'completed'%>" type="text" value="<%=info[i].todoItem%>" data-id="<%=info[i]._id%>">
                             <i class="fa-solid fa-trash"></i>
                             <ul class="subtasks">
                                 <% info[i].subtasks.forEach(subtask => { %>
-                                    <li class="subtask">
-                                        <input class = "subtask text-input" value="<%=subtask%>">
+                                    <li class="subtask" style="padding-left:60px;">
+                                        <i class="fa-regular fa-square subtask-square subtask-not-checked"></i>
+                                        <i class="fa-solid fa-arrows-rotate st-update"></i>
+                                        <input class = "subtask uncompleted text-input" value="<%=subtask%>" autocomplete="off">
+                                        <i class="fa-solid fa-xmark"></i>
                                     </li>
                                 <%})%>
+                                <% info[i].completedSubtasks.forEach(subtask => { %>
+                                    <li class="subtask" style="padding-left:60px;">
+                                        <i class="fa-regular fa-square-check subtask-square subtask-checked'"></i>
+                                        <i class="fa-solid fa-arrows-rotate st-update"></i>
+                                        <input class = "subtask completed text-input" value="<%=subtask%>" autocomplete="off">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </li>
+                                <%})%>
+
                             </ul>
                             
                         </li>
@@ -51,7 +63,7 @@
         <section>
         <form method="POST" action="/postItem">
             <input class="submit-button" type="submit" value="+">
-            <input class="text-input" type="text" name="todoItem" autocomplete="off" autofocus="on" required><br>
+            <input class="text-input" type="text" name="todoItem" autocomplete="off" required><br>
         </form>
         </section>
     </section>

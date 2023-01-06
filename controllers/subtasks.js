@@ -5,7 +5,7 @@ module.exports = {
         try{
             await Note.updateOne(
                 {_id:req.body.id},
-                {$push: {subtasks:req.body.subtask},$set:{hasSubtasks:true}},
+                {$push: {subtasks:req.body.subtask},$set:{hasSubtasks:true, completedSubtasks:[]}},
                 {upsert:false}),
 
             console.log(`Subtask created for id: ${req.body.id}`)
@@ -16,14 +16,27 @@ module.exports = {
         }
     },
     
-    markSubtask:'',
-
-    unmarkSubtask: async (req,res) => {
+    deleteSubtask: async (req,res) => {
         await Note.updateOne(
            {_id:req.body.id},
-           {$set: {completed: false}},
+           {$set: {
+                subtasks: req.body.uncompletedSubtasks,
+                completedSubtasks: req.body.completedSubtasks
+            }},
            {upsert:false})
-       console.log(`id: ${req.body.id} ${req.body.itemName} unmarked`)
+       console.log(`Subtasks were updated. ${req.body.deletedSubtask} was deleted from ${req.body.id}`)
+       res.json('Subtask deleted')
+       },
+
+    updateSubtask: async (req,res) => {
+        await Note.updateOne(
+           {_id:req.body.id},
+           {$set: {
+            subtasks: req.body.uncompletedSubtasks,
+            completedSubtasks: req.body.completedSubtasks
+        }},
+           {upsert:false})
+       console.log(`id: ${req.body.id} subtasks updated`)
        res.json('Unmarked Complete')
        }
 }

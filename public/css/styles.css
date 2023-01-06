@@ -82,6 +82,11 @@ form{
 section > section{
     padding-left: 6px;
 }
+
+.subtask-write{
+    padding-left:64px;
+    width:300px;
+}
 /* 
 textarea {
     resize: none;
