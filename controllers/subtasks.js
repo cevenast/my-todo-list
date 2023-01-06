@@ -5,7 +5,7 @@ module.exports = {
         try{
             await Note.updateOne(
                 {_id:req.body.id},
-                {$push: {subtasks:req.body.subtask},$set:{hasSubtasks:true, completedSubtasks:[]}},
+                {$push: {subtasks:req.body.subtask},$set:{hasSubtasks:true}},
                 {upsert:false}),
 
             console.log(`Subtask created for id: ${req.body.id}`)
@@ -20,7 +20,7 @@ module.exports = {
         await Note.updateOne(
            {_id:req.body.id},
            {$set: {
-                subtasks: req.body.uncompletedSubtasks,
+                subtasks: req.body.allSubtasks,
                 completedSubtasks: req.body.completedSubtasks
             }},
            {upsert:false})
@@ -32,7 +32,7 @@ module.exports = {
         await Note.updateOne(
            {_id:req.body.id},
            {$set: {
-            subtasks: req.body.uncompletedSubtasks,
+            subtasks: req.body.allSubtasks,
             completedSubtasks: req.body.completedSubtasks
         }},
            {upsert:false})

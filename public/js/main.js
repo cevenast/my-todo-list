@@ -128,17 +128,14 @@ function appearSubtask(){
 async function deleteSubtask(){
     const ul = this.parentNode.parentNode
     const itemid = ul.previousElementSibling.previousElementSibling.dataset.id
-    let uncompletedSubtasks = []
+    let allSubtasks = []
     let completedSubtasks = []
 
     const deletedSubtask = this.previousElementSibling.value
     for (let i = 1; i < ul.childElementCount*2; i+=2){
-        console.log(ul.childNodes[i].childNodes[5].value)
         if (ul.childNodes[i].childNodes[5].value != deletedSubtask){
-            if (ul.childNodes[i].childNodes[5].classList.contains('uncompleted')){
-                uncompletedSubtasks.push(ul.childNodes[i].childNodes[5].value)
-            }
-            else{
+            allSubtasks.push(ul.childNodes[i].childNodes[5].value)
+            if (ul.childNodes[i].childNodes[5].classList.contains('completed')){
                 completedSubtasks.push(ul.childNodes[i].childNodes[5].value)
             }
         }
@@ -151,7 +148,7 @@ async function deleteSubtask(){
             body: JSON.stringify({
                 id: itemid,
                 deletedSubtask: deletedSubtask,
-                uncompletedSubtasks: uncompletedSubtasks,
+                allSubtasks: allSubtasks,
                 completedSubtasks: completedSubtasks
             })
         })
@@ -174,14 +171,12 @@ async function markSubtask(){
         input.classList.replace('completed','uncompleted')
     }
 
-    let uncompletedSubtasks = []
+    let allSubtasks = []
     let completedSubtasks = []
     
     for (let i = 1; i < ul.childElementCount*2; i+=2){
-        if (ul.childNodes[i].childNodes[5].classList.contains('uncompleted')){
-            uncompletedSubtasks.push(ul.childNodes[i].childNodes[5].value)
-        }
-        else{
+        allSubtasks.push(ul.childNodes[i].childNodes[5].value)
+        if (ul.childNodes[i].childNodes[5].classList.contains('completed')){
             completedSubtasks.push(ul.childNodes[i].childNodes[5].value)
         }
     }
@@ -192,7 +187,7 @@ async function markSubtask(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 id: itemid,
-                uncompletedSubtasks: uncompletedSubtasks,
+                allSubtasks: allSubtasks,
                 completedSubtasks: completedSubtasks
             })
         })
@@ -209,14 +204,12 @@ async function updateSubtask(){
     const input = this.nextElementSibling.nextElementSibling
     const itemid = ul.previousElementSibling.previousElementSibling.dataset.id
 
-    let uncompletedSubtasks = []
+    let allSubtasks = []
     let completedSubtasks = []
     
     for (let i = 1; i < ul.childElementCount*2; i+=2){
-        if (ul.childNodes[i].childNodes[5].classList.contains('uncompleted')){
-            uncompletedSubtasks.push(ul.childNodes[i].childNodes[5].value)
-        }
-        else{
+        allSubtasks.push(ul.childNodes[i].childNodes[5].value)
+        if (ul.childNodes[i].childNodes[5].classList.contains('completed')){
             completedSubtasks.push(ul.childNodes[i].childNodes[5].value)
         }
     }
@@ -227,7 +220,7 @@ async function updateSubtask(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 id: itemid,
-                uncompletedSubtasks: uncompletedSubtasks,
+                allSubtasks: allSubtasks,
                 completedSubtasks: completedSubtasks
             })
         })

@@ -38,21 +38,12 @@
                             <ul class="subtasks">
                                 <% info[i].subtasks.forEach(subtask => { %>
                                     <li class="subtask" style="padding-left:60px;">
-                                        <i class="fa-regular fa-square subtask-square subtask-not-checked"></i>
+                                        <i class="fa-regular <%=info[i].completedSubtasks.includes(subtask) ? 'fa-square-check subtask-square subtask-checked' : 'fa-square subtask-square subtask-not-checked'%>"></i>
                                         <i class="fa-solid fa-arrows-rotate st-update"></i>
-                                        <input class = "subtask uncompleted text-input" value="<%=subtask%>" autocomplete="off">
+                                        <input class = "subtask text-input <%=info[i].completedSubtasks.includes(subtask) ? 'completed' : 'uncompleted'%>" value="<%=subtask%>" autocomplete="off">
                                         <i class="fa-solid fa-xmark"></i>
                                     </li>
                                 <%})%>
-                                <% info[i].completedSubtasks.forEach(subtask => { %>
-                                    <li class="subtask" style="padding-left:60px;">
-                                        <i class="fa-regular fa-square-check subtask-square subtask-checked'"></i>
-                                        <i class="fa-solid fa-arrows-rotate st-update"></i>
-                                        <input class = "subtask completed text-input" value="<%=subtask%>" autocomplete="off">
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </li>
-                                <%})%>
-
                             </ul>
                             
                         </li>
