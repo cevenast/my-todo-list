@@ -10,7 +10,7 @@ module.exports = {
              res.json('Note Renamed')  
          },
     
-         delete: async (req,res) => {
+    delete: async (req,res) => {
             await Note.updateOne(
                {_id:req.body.id},
                {$set: {deleted: true}},
