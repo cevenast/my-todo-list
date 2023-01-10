@@ -9,10 +9,10 @@ module.exports = {
                 {upsert:false}),
 
             console.log(`Subtask created for id: ${req.body.id}`)
-            res.redirect('/')
+            res.redirect('/todos/')
         }catch(err){
             console.log('JAJAJAJAJAJA NO CUMPLES CON EL ESQUEMA!!!')
-            res.redirect('/')
+            res.redirect('/todos/')
         }
     },
     

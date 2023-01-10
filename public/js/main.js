@@ -22,7 +22,7 @@ async function markTask(){
     const itemid = this.parentNode.childNodes[7].dataset.id
     const itemValue = this.parentNode.childNodes[7].value
     try{
-        const response = await fetch('/markTask', {
+        const response = await fetch('/todos/markTask', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -42,7 +42,7 @@ async function unmarkTask(){
     const itemid = this.parentNode.childNodes[7].dataset.id
     const itemValue = this.parentNode.childNodes[7].value
     try{
-        const response = await fetch('/unmarkTask', {
+        const response = await fetch('/todos/unmarkTask', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -62,7 +62,7 @@ async function deleteTask(){
     try{
         const itemid = this.parentNode.childNodes[7].dataset.id
         const itemValue = this.parentNode.childNodes[7].value
-        const response = await fetch('/deleteTask', {
+        const response = await fetch('/todos/deleteTask', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -82,7 +82,7 @@ async function renameTask(){
     const itemid = this.parentNode.childNodes[7].dataset.id
     const itemValue = this.parentNode.childNodes[7].value
     try{
-        const response = await fetch('/renameTask', {
+        const response = await fetch('/todos/renameTask', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -121,7 +121,7 @@ function appearSubtask(){
     const itemid = this.parentNode.childNodes[7].dataset.id
     const ul = this.nextElementSibling.nextElementSibling.nextElementSibling
     const li = document.createElement('li')
-    li.innerHTML = `<form class="subtask-write" action="/addSubtask" method="POST"><input type="hidden" name="id" value="${itemid}" /><input class="submit-button" type="submit" value="+"><input class = "text-input" type="text" name="subtask" autofocus="on" required></form>`
+    li.innerHTML = `<form class="subtask-write" action="/todos/addSubtask" method="POST"><input type="hidden" name="id" value="${itemid}" /><input class="submit-button" type="submit" value="+"><input class = "text-input" type="text" name="subtask" autofocus="on" required></form>`
     ul.appendChild(li)
 }
 
@@ -142,7 +142,7 @@ async function deleteSubtask(){
     }
 
     try{
-        const response = await fetch('/deleteSubtask', {
+        const response = await fetch('/todos/deleteSubtask', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -182,7 +182,7 @@ async function markSubtask(){
     }
 
     try{
-        const response = await fetch('/updateSubtask', {
+        const response = await fetch('/todos/updateSubtask', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -215,7 +215,7 @@ async function updateSubtask(){
     }
 
     try{
-        const response = await fetch('/updateSubtask', {
+        const response = await fetch('/todos/updateSubtask', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
