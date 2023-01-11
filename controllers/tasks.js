@@ -3,7 +3,7 @@ const Note = require('../models/Note')
 module.exports = {
     getTodos: async (req, res) => {
         try{
-            const items = await Note.find()
+            const items = await Note.find({userId:req.user.id,deleted:false})
             res.render('todos.ejs',{info: items})
         }catch(err){
             if (err) return res.status(500).send(err)
@@ -11,11 +11,11 @@ module.exports = {
     },
     createTask: async (req,res) => {
         try{
-            await Note.create({todoItem:req.body.todoItem, completed:false, deleted:false, hasSubtasks:false, subtasks:[]})
+            await Note.create({todoItem:req.body.todoItem, completed:false, deleted:false, hasSubtasks:false, subtasks:[], userId:req.user.id})
             console.log(`${req.body.todoItem} Item has been created`)
             res.redirect('/todos/')
         }catch(err){
-            console.log('JAJAJAJAJAJA NO CUMPLES CON EL ESQUEMA!!!')
+            console.log('Check if you actually comply with the schema')
             res.redirect('/todos/')
         }
     },
