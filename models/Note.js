@@ -6,7 +6,8 @@ const noteSchema = new mongoose.Schema({
     deleted: Boolean,
     hasSubtasks: Boolean,
     subtasks: Array,
-    completedSubtasks: Array
+    completedSubtasks: Array,
+    userId: String // this is new
   })
 
 module.exports = mongoose.model('Note', noteSchema) // Note -> notes Collection
