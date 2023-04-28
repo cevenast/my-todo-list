@@ -1,5 +1,6 @@
 html{
-    background-color: #f3f5f0;
+    background-color: white;
+    box-sizing: border-box;
 }
 body{
     margin:auto;
@@ -23,7 +24,7 @@ ul{
 }
 
 section{
-    margin:0 auto;
+    /* margin:0 auto; */
     width:800px;
 }
 
@@ -87,6 +88,88 @@ section > section{
     padding-left:64px;
     width:300px;
 }
+ /* Index Page */
+
+#column-container{
+    margin:auto;
+    width:950px;
+    height:600px;
+    background-image:url("/css/bg/girl-writing3.webp");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+}
+
+    .bg-gradient{
+        background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(100,40,0,0.4) 100%);
+        height:inherit;
+        width:100%;
+    }
+
+        .left{
+            width:100%;
+            height:50%;
+            color:white;
+        }
+
+        .right{
+            display:flex;
+            justify-content: right;
+            width:100%;
+            height:50%;
+        }
+
+
+            #login-container{
+                margin: 180px 50px 0 0;
+                height:60px;
+                width:200px;
+                background-color: #3d190755;
+            }
+
+                #login-form{
+                    font-size:0.7rem;
+                    width:100%;
+                }
+
+                    #login-form > * {
+                        display:block;
+                    }
+
+#title{
+    padding:70px 0 0 40px;
+    width:60%;
+    min-width:350px;
+    margin: 0;
+}
+
+@media screen and (max-width:950px){
+    #column-container{
+        width:100%;
+        height:600px;
+        background-image:url("/css/bg/girl-writing3.webp");
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+    }
+}
+
+@media (max-width:650px){
+    .right{
+        display:flex;
+        justify-content: left;
+        width:100%;
+        height:50%;
+    }
+    
+    #login-container{
+        margin: 180px 0 0 10px;
+        height:60px;
+        width:200px;
+        background-color: #3d190755;
+    }
+}
+
 /* 
 textarea {
     resize: none;

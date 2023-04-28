@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-do list</title>
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <section id="column-container">
+        <div class="bg-gradient">
+            <section class="column left">
+                <h1 id="title">Order your ideas. Focus on what really matters.</h1>
+                <script src="/js/main.js"></script>
+            </section>
+            <section class="column right">
+                <body>
+                    <% if (locals.messages.errors) { %>
+                        <% messages.errors.forEach( el => { %>
+                            <div class="alert alert-danger"><%= el.msg %></div>
+                        <% }) %>    
+                    <% } %>
+                    <% if (locals.messages.info) { %>
+                        <% messages.info.forEach( el => { %>
+                            <div class="alert alert-danger"><%= el.msg %></div>
+                        <% }) %>    
+                    <% } %>
+                    <section id="login-container">
+                        <section class="img-container"></section>
+                        <form id="login-form"action="/login" method="POST">
+                            <input type="email" name="email" placeholder="Email">
+                            <input type="password" name="password" placeholder="Password">
+                            <div>
+                                <input type="submit" value="Log In">
+                                <a href="/signup/"><span>Sign Up</span></a>
+                            </div>
+
+                        </form>
+                
+                    </section>
+            </section>
+        </div>
+    </section>
+
+</body>
+</html>
