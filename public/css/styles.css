@@ -7,6 +7,11 @@ body{
     font-family: 'Cutive', serif;
 }
 
+main{
+    display:flex;
+    font-family: serif;
+}
+
 header{
     text-align: center;
     padding-bottom:60px;
@@ -25,7 +30,8 @@ ul{
 
 section{
     /* margin:0 auto; */
-    width:800px;
+    width:650px;
+    padding-left:50px;
 }
 
 li{

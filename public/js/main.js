@@ -232,11 +232,58 @@ async function updateSubtask(){
     }
 }
 
+// Spotify
 
+function getSpotifyToken(){
+    fetch("https://accounts.spotify.com/api/token",{
+      method: 'post',
+      headers:{
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: "grant_type=client_credentials&client_id=06b111674d4c47d9bdc749c984750292&client_secret=6cd5c6e818a74101a94b6811dc6e88b4"
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        spotifyToken = res.access_token
+      })
+      .catch(err => console.log(err))
+  }
+  
+function spotifySearch(token){
+console.log('Searching...')
+const input = document.querySelector('#spotify-input').value
+fetch(`https://api.spotify.com/v1/search?q=${input}&type=playlist&market=ES`, {
+    headers:{
+    Authorization: `Bearer ${token}`
+    }
+})
+    .then(res => res.json())
+    .then(res => {
+    console.log(res)
+    const resultsUL = document.querySelector('#results')
+    resultsUL.innerHTML= ''
+    const playlists = res.playlists.items
 
+    playlists.forEach(playlist => {
+        const LI = document.createElement('li')
+        const IMG = document.createElement('img')
+        LI.innerText = playlist.name
+        LI.dataset.id = playlist.id
+        resultsUL.append(LI)
+    })
 
+    })
+    .catch(err => console.log(err))
+}
 
-// function auto_grow(element) {
-//     element.style.height = "20px";
-//     element.style.height = (element.scrollHeight)+"px";
-// }
+let spotifyToken = null
+getSpotifyToken()
+
+function changePlaylist(e){
+    const id = e.target.dataset.id
+    document.querySelector('iframe').src = `https://open.spotify.com/embed/playlist/${id}`
+  }
+
+document.querySelector('#spotify-search').addEventListener('click', () => spotifySearch(spotifyToken))
+document.querySelector('#results').addEventListener('click', changePlaylist)
